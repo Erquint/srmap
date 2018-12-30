@@ -1,5 +1,3 @@
-window.onerror = errHand
-
 let assets =
 {
 	map: './assets/map.png',
@@ -57,73 +55,86 @@ let viewer = new OpenSeadragon.Viewer
 		{
 			type: 'image',
 			url:  './assets/xmap.png',
-			width: 3987, //problem, officer
+			width: 3987,
 			height: 2971
 		}
 	}
 )
 
+window.onerror = errHand
 viewer.addHandler('open-failed', errHand)
-viewer.addHandler('open', function(){Array.from(document.getElementsByClassName('checkboxes')).forEach(setVisibility)})
 
-let overlays =
-{
-	maps:
-	[
-			createMarker('map', [0, 0]),
-			createMarker('map', [3987, 0]),
-			createMarker('map', [0, 2971]),
-			createMarker('map', [3987, 2971])
-	],
-	logs:
-	[
-			createMarker('log', [500, 600]),
-			createMarker('log', [700, 800])
-	],
-	gordos:
-	[
-			createMarker('gordo', [900, 1000]),
-			createMarker('gordo', [1100, 1200])
-	],
-	keys:
-	[
-			createMarker('key', [1300, 1400]),
-			createMarker('key', [1500, 1600])
-	],
-	gates:
-	[
-			createMarker('gate', [1700, 1800]),
-			createMarker('gate', [1900, 2000])
-	],
-	vaults:
-	[
-			createMarker('vault', [2100, 2200]),
-			createMarker('vault', [2300, 2400])
-	]
-}
-
-function createMarker(kind, pos, gordoType)
-{
-	let element = new Image(75, 75)
-	element.setAttribute('onerror', "errHand(\"Couldn't load a marker.\")")
-	if (!gordoType)
+viewer.addHandler('open', function()
 	{
-		element.setAttribute('src', assets[kind])
+		createMarkers(undefined, undefined, undefined, false)
+		Array.from(document.getElementsByClassName('checkboxes')).forEach(setVisibility)
+	})
+
+let overlays
+
+function createMarkers(kind, pos, gordoType, recursion)
+{
+	if (!recursion)
+	{
+		overlays =
+		{
+			maps:
+			[
+					createMarkers('map', [0, 0], undefined, true),
+					createMarkers('map', [3987, 0], undefined, true),
+					createMarkers('map', [0, 2971], undefined, true),
+					createMarkers('map', [3987, 2971], undefined, true)
+			],
+			logs:
+			[
+					createMarkers('log', [500, 600], undefined, true),
+					createMarkers('log', [700, 800], undefined, true)
+			],
+			gordos:
+			[
+					createMarkers('gordo', [900, 1000], undefined, true),
+					createMarkers('gordo', [1100, 1200], undefined, true)
+			],
+			keys:
+			[
+					createMarkers('key', [1300, 1400], undefined, true),
+					createMarkers('key', [1500, 1600], undefined, true)
+			],
+			gates:
+			[
+					createMarkers('gate', [1700, 1800], undefined, true),
+					createMarkers('gate', [1900, 2000], undefined, true)
+			],
+			vaults:
+			[
+					createMarkers('vault', [2100, 2200], undefined, true),
+					createMarkers('vault', [2300, 2400], undefined, true)
+			]
+		}
 	}
 	else
 	{
-		element.setAttribute('src', assets.gordoTypes[gordoType])
+		let element = new Image(75, 75)
+		element.setAttribute('onerror', "errHand(\"Couldn't load a marker.\")")
+		if (!gordoType)
+		{
+			element.setAttribute('src', assets[kind])
+		}
+		else
+		{
+			element.setAttribute('src', assets.gordoTypes[gordoType])
+		}
+		element.style.visibility = 'hidden'
+		let overlayData =
+		{
+			element: element,
+			location: viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(pos[0], pos[1])),
+			placement: 'CENTER',
+			checkResize: true
+		}
+		viewer.addOverlay(overlayData)
+		return element
 	}
-	element.style.visibility = 'hidden'
-	let overlayData =
-	{
-		element: element,
-		location: viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(pos[0], pos[1])),
-		placement: 'CENTER',
-		checkResize: true
-	}
-	viewer.addOverlay(overlayData)
-	return element
 }
 
 function setVisibility(element)
@@ -207,3 +218,6 @@ viewerElementToViewportCoordinates
 windowToViewportCoordinates
 pointFromPixel
 */
+
+/*Reported Bugs:
+TypeError: overlays is undefined @/js/index.js:137:6
