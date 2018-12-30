@@ -70,71 +70,83 @@ viewer.addHandler('open', function()
 		Array.from(document.getElementsByClassName('checkboxes')).forEach(setVisibility)
 	})
 
-let overlays
-
-function createMarkers(kind, pos, gordoType, recursion)
+let overlays =
 {
-	if (!recursion)
+	maps:
+	[
+			{asset: 'map', posistion: [0, 0]},
+			{asset: 'map', posistion: [3987, 0]},
+			{asset: 'map', posistion: [0, 2971]},
+			{asset: 'map', posistion: [3987, 2971]}
+	],
+	logs:
+	[
+			{asset: 'log', posistion: [500, 600]},
+			{asset: 'log', posistion: [700, 800]}
+	],
+	gordos:
+	[
+			{asset: 'gordo', posistion: [900, 1000]},
+			{asset: 'gordo', posistion: [1100, 1200]}
+	],
+	keys:
+	[
+			{asset: 'key', posistion: [1300, 1400]},
+			{asset: 'key', posistion: [1500, 1600]}
+	],
+	gates:
+	[
+			{asset: 'gate', posistion: [1700, 1800]},
+			{asset: 'gate', posistion: [1900, 2000]}
+	],
+	vaults:
+	[
+			{asset: 'vault', posistion: [2100, 2200]},
+			{asset: 'vault', posistion: [2300, 2400]}
+	]
+}
+
+function createOverlays(overlays) //Check scope.
+{
+	Object.entries(overlays).map(function(key, index)
 	{
-		overlays =
-		{
-			maps:
-			[
-					createMarkers('map', [0, 0], undefined, true),
-					createMarkers('map', [3987, 0], undefined, true),
-					createMarkers('map', [0, 2971], undefined, true),
-					createMarkers('map', [3987, 2971], undefined, true)
-			],
-			logs:
-			[
-					createMarkers('log', [500, 600], undefined, true),
-					createMarkers('log', [700, 800], undefined, true)
-			],
-			gordos:
-			[
-					createMarkers('gordo', [900, 1000], undefined, true),
-					createMarkers('gordo', [1100, 1200], undefined, true)
-			],
-			keys:
-			[
-					createMarkers('key', [1300, 1400], undefined, true),
-					createMarkers('key', [1500, 1600], undefined, true)
-			],
-			gates:
-			[
-					createMarkers('gate', [1700, 1800], undefined, true),
-					createMarkers('gate', [1900, 2000], undefined, true)
-			],
-			vaults:
-			[
-					createMarkers('vault', [2100, 2200], undefined, true),
-					createMarkers('vault', [2300, 2400], undefined, true)
-			]
-		}
+		myObject[key] *= 2
+	})
+	overlays = overlays.map(createMarkers)
+}
+
+/*
+Object.keys(myObject).map(function(key, index)
+{
+	myObject[key] *= 2
+})
+overlays = overlays.map(createMarkers)
+*/
+
+function createMarkers(markers)
+{
+	let element = new Image(75, 75)
+	element.setAttribute('onerror', "errHand(\"Couldn't load a marker.\")")
+	if (!gordoType)
+	{
+		element.setAttribute('src', assets[kind])
 	}
 	else
 	{
-		let element = new Image(75, 75)
-		element.setAttribute('onerror', "errHand(\"Couldn't load a marker.\")")
-		if (!gordoType)
-		{
-			element.setAttribute('src', assets[kind])
-		}
-		else
-		{
-			element.setAttribute('src', assets.gordoTypes[gordoType])
-		}
-		element.style.visibility = 'hidden'
-		let overlayData =
-		{
-			element: element,
-			location: viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(pos[0], pos[1])),
-			placement: 'CENTER',
-			checkResize: true
-		}
-		viewer.addOverlay(overlayData)
-		return element
+		element.setAttribute('src', assets.gordoTypes[gordoType])
 	}
+	element.style.visibility = 'hidden'
+	let overlayData =
+	{
+		element: element,
+		location: viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(pos[0], pos[1])),
+		placement: 'CENTER',
+		checkResize: true
+	}
+	viewer.addOverlay(overlayData)
+	return element
+	
+	return 
 }
 
 function setVisibility(element)
@@ -221,3 +233,4 @@ pointFromPixel
 
 /*Reported Bugs:
 TypeError: overlays is undefined @/js/index.js:137:6
+*/
