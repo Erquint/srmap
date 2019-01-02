@@ -1,3 +1,16 @@
+function errHand()
+{
+	while (document.hasChildNodes())
+	{
+		document.removeChild(document.lastChild)
+	}
+	
+	let data = JSON.stringify(JSON.decycle(arguments), undefined, "\n").replace(/\n+/g, "\n")
+	let string = "Call the cops immediately!\nTell them this:\n" + data
+	window.alert(string)
+	console.log(string)
+}
+
 let assets =
 {
 	map: './assets/map.png',
@@ -61,122 +74,79 @@ let viewer = new OpenSeadragon.Viewer
 	}
 )
 
+let overlays = {
+	map: [
+		{x: 0, y: 0},
+		{x: 3987, y: 0},
+		{x: 0, y: 2971},
+		{x: 3987, y: 2971}
+	],
+	log: [
+		{x: 500, y: 600},
+		{x: 700, y: 800}
+	],
+	gordo: [
+		{x: 900, y: 1000},
+		{x: 1100, y: 1200}
+	],
+	key: [
+		{x: 1300, y: 1400},
+		{x: 1500, y: 1600}
+	],
+	gate: [
+		{x: 1700, y: 1800},
+		{x: 1900, y: 2000}
+	],
+	vault: [
+		{x: 2100, y: 2200},
+		{x: 2300, y: 2400}
+	]
+};
+
 window.onerror = errHand
 viewer.addHandler('open-failed', errHand)
 
-viewer.addHandler('open', function()
-	{
-		createMarkers(undefined, undefined, undefined, false)
-		Array.from(document.getElementsByClassName('checkboxes')).forEach(setVisibility)
-	})
-
-let overlays =
-{
-	maps:
-	[
-			{asset: 'map', posistion: [0, 0]},
-			{asset: 'map', posistion: [3987, 0]},
-			{asset: 'map', posistion: [0, 2971]},
-			{asset: 'map', posistion: [3987, 2971]}
-	],
-	logs:
-	[
-			{asset: 'log', posistion: [500, 600]},
-			{asset: 'log', posistion: [700, 800]}
-	],
-	gordos:
-	[
-			{asset: 'gordo', posistion: [900, 1000]},
-			{asset: 'gordo', posistion: [1100, 1200]}
-	],
-	keys:
-	[
-			{asset: 'key', posistion: [1300, 1400]},
-			{asset: 'key', posistion: [1500, 1600]}
-	],
-	gates:
-	[
-			{asset: 'gate', posistion: [1700, 1800]},
-			{asset: 'gate', posistion: [1900, 2000]}
-	],
-	vaults:
-	[
-			{asset: 'vault', posistion: [2100, 2200]},
-			{asset: 'vault', posistion: [2300, 2400]}
-	]
-}
-
-function createOverlays(overlays) //Check scope.
-{
-	Object.entries(overlays).map(function(key, index)
-	{
-		myObject[key] *= 2
-	})
-	overlays = overlays.map(createMarkers)
-}
-
-/*
-Object.keys(myObject).map(function(key, index)
-{
-	myObject[key] *= 2
-})
-overlays = overlays.map(createMarkers)
-*/
-
-function createMarkers(markers)
-{
-	let element = new Image(75, 75)
-	element.setAttribute('onerror', "errHand(\"Couldn't load a marker.\")")
-	if (!gordoType)
-	{
-		element.setAttribute('src', assets[kind])
-	}
-	else
-	{
-		element.setAttribute('src', assets.gordoTypes[gordoType])
-	}
-	element.style.visibility = 'hidden'
-	let overlayData =
-	{
-		element: element,
-		location: viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(pos[0], pos[1])),
-		placement: 'CENTER',
-		checkResize: true
-	}
-	viewer.addOverlay(overlayData)
-	return element
+viewer.addHandler('open', function() {
 	
-	return 
-}
-
-function setVisibility(element)
-{
-	if (!overlays[element.name])
-	{
-		errHand()
-		return false
-	}
-	let group = overlays[element.name]
-	if (element.checked)
-	{
-		group.forEach(function(item){item.style.visibility = 'visible'})
-	}
-	else
-	{
-		group.forEach(function(item){item.style.visibility = 'hidden'})
-	}
-	return true
-}
-
-function errHand()
-{
-	while (document.hasChildNodes())
-	{
-		document.removeChild(document.lastChild)
+	function createMarker(marker, group) {
+		let element = new Image(75, 75)
+		marker.element = element;
+		element.addEventListener('error', function() {errHand("Couldn't load a marker.")});
+		if (!marker.gordoType)
+		{
+			element.setAttribute('src', assets[group])
+		}
+		else
+		{
+			element.setAttribute('src', assets.gordoTypes[marker.gordoType])
+		}
+		element.style.visibility = 'hidden'
+		
+		element.addEventListener('load', function() {
+			viewer.addOverlay({
+				element: element,
+				location: viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(marker.x, marker.y)),
+				placement: 'CENTER',
+				checkResize: true
+			});
+		});
 	}
 	
-	let data = JSON.stringify(JSON.decycle(arguments), undefined, "\n").replace(/\n+/g, "\n")
-	let string = "Call the cops immediately!\nTell them this:\n" + data
-	window.alert(string)
-	console.log(string)
-}
+	window.setVisibility = function(checkbox)
+	{
+		let group = overlays[checkbox.name]
+		if (group) {
+			group.forEach(function(item){
+				item.element.style.visibility = checkbox.checked ? 'visible' : 'hidden';
+			});
+		}
+	}
+	
+	_.forOwn(overlays, function(items, group) {
+		_.forEach(items, function(item) {
+			createMarker(item, group);
+		});
+	});
+		
+	_.forEach(document.getElementsByClassName('checkboxes'), window.setVisibility)
+});
