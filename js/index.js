@@ -35,8 +35,6 @@ let viewer = new OpenSeadragon.Viewer
 		id: 'canvas',
 		immediateRender: true,
 		autoHideControls: true,
-		//wrapHorizontal: true,
-		//wrapVertical: true,
 		maxZoomPixelRatio: 4,
 		minZoomImageRatio: 0.1,
 		visibilityRatio: 0,
@@ -47,10 +45,7 @@ let viewer = new OpenSeadragon.Viewer
 		gestureSettingsUnknown: gestureSettings,
 		zoomPerClick: 4,
 		zoomPerScroll: 1.6,
-		//zoomPerSecond
-		//showNavigationControl
 		showNavigator:true,
-		//navigatorSizeRatio
 		navigatorAutoFade: true,
 		navigatorBackground: '#FFFFFF44',
 		navigatorOpacity: 1,
@@ -58,10 +53,6 @@ let viewer = new OpenSeadragon.Viewer
 		controlsFadeLength: 400,
 		navigatorFadeDelay: 800,
 		navigatorFadeLength: 400,
-		//useCanvas
-		//sequenceMode
-		//preserveOverlays
-		//showReferenceStrip
 		tileSources:
 		{
 			type: 'image',
@@ -223,7 +214,7 @@ function setVisibility(checkbox)
 
 function initialize()
 {
-	document.getElementsByClassName('openseadragon-container')[0].style.setProperty('background-color', window.getComputedStyle(document.body).backgroundColor)
+	document.getElementsByClassName('openseadragon-container')[0].style.setProperty('background-color', '#00000000')
 	createOverlays()
 }
 

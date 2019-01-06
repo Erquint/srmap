@@ -1,9 +1,11 @@
-##### Useful colors:  
-* `#0D3F4F`
-* `#36393F`
-* `#AAAEB4`  
+##### Reported issues:  
 
-##### Debug Snippet:  
+##### Suggestions:  
+* Move all UI to float on top of canvas.  
+* Better error reporting form with `mailto` protocol.  
+* Conditional image element resizing.  
+
+##### Debug snippet:  
 ```JS
 JSON.stringify(viewer.currentOverlays.map(function(currentOverlay){return currentOverlay.location}), undefined, "\n").replace(/\n+/g, "\n")```
 http://openseadragon.github.io/docs/OpenSeadragon.Point.html  
@@ -11,12 +13,23 @@ http://openseadragon.github.io/docs/OpenSeadragon.Viewport.html#imageToViewerEle
 http://openseadragon.github.io/docs/OpenSeadragon.html#.Options  
 http://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open  
 
-##### Reported Issues:  
+##### Viewer options snippets:  
+```JS
+wrapHorizontal: true,
+wrapVertical: true,
+zoomPerSecond
+showNavigationControl
+navigatorSizeRatio
+useCanvas
+sequenceMode
+preserveOverlays
+showReferenceStrip
+zoomPerClick```
 
-##### Suggestions:  
-* Move all UI to float on top of canvas.
-* Better error reporting form with `mailto` protocol.
-* Conditional image element resizing.
+##### Useful colors:  
+* `#0D3F4F`  
+* `#36393F`  
+* `#AAAEB4`  
 
 ##### Interpolation methods:  
 * imageToViewerElementCoordinates  
@@ -71,3 +84,5 @@ let data = JSON.stringify(JSON.decycle(arguments), undefined, "\n").replace(/\n+
 new Image(50, 50)
 element.width = element.naturalWidth
 element.height = element.naturalHeight```
+```JS
+window.getComputedStyle(document.body).backgroundColor```
