@@ -1,16 +1,24 @@
+##### Useful colors:  
+* `#0D3F4F`
+* `#36393F`
+* `#AAAEB4`  
+
+##### Debug Snippet:  
 ```JS
 JSON.stringify(viewer.currentOverlays.map(function(currentOverlay){return currentOverlay.location}), undefined, "\n").replace(/\n+/g, "\n")```
-http://openseadragon.github.io/docs/OpenSeadragon.Point.html
-http://openseadragon.github.io/docs/OpenSeadragon.Viewport.html#imageToViewerElementCoordinates
-http://openseadragon.github.io/docs/OpenSeadragon.html#.Options
-http://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open
+http://openseadragon.github.io/docs/OpenSeadragon.Point.html  
+http://openseadragon.github.io/docs/OpenSeadragon.Viewport.html#imageToViewerElementCoordinates  
+http://openseadragon.github.io/docs/OpenSeadragon.html#.Options  
+http://openseadragon.github.io/docs/OpenSeadragon.Viewer.html#open  
 
-Reported Issues:  
+##### Reported Issues:  
 
-* TypeError: overlays is undefined @/js/index.js:137:6
+##### Suggestions:  
+* Move all UI to float on top of canvas.
+* Better error reporting form with `mailto` protocol.
+* Conditional image element resizing.
 
-Interpolation methods:  
-
+##### Interpolation methods:  
 * imageToViewerElementCoordinates  
 * imageToViewportCoordinates  
 * imageToViewportZoom  
@@ -55,3 +63,11 @@ viewer.viewport.pointFromPixel(point),
 viewer.viewport.pointFromPixelNoRotate(point)];
 y = x.map(function(item){if ((Math.abs(item.x) < 100) && (Math.abs(item.y) < 100)){return item}});
 return y};```
+
+##### Random snippets:  
+```JS
+let data = JSON.stringify(JSON.decycle(arguments), undefined, "\n").replace(/\n+/g, "\n")```
+```JS
+new Image(50, 50)
+element.width = element.naturalWidth
+element.height = element.naturalHeight```

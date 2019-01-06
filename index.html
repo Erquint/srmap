@@ -1,19 +1,33 @@
+<head>
+	<meta charset="UTF-8">
+	<meta name="description"	content="An interactive Slime Rancher map for static web.">
+	<meta name="keywords"			content="Slime Rancher,map,interactive">
+	<meta name="author"				content="Murad 'Gness Erquint' Beybalaev">
+	<meta name="viewport"			content="width=device-width, initial-scale=1.0">
+	<link rel='icon'					href='./assets/favicon.ico'>
+	<title>Plort.ml — Interactive Slime Rancher map</title>
+	<style>
+		body		{background-color: #AAAEB4;margin: 0px;}
+		#flex		{display: flex;flex-direction: row;white-space: nowrap;}
+		#canvas	{width: 100vw;height: 100vh;margin: 0px;}
+	</style>
+</head>
 <html>
-	<body style = "margin: 0px">
-		<div style = "display: flex; flex-direction: row">
+	<body>
+		<div id=flex>
 			<div>
-				<div style = "white-space: nowrap;"><label><input class = "checkboxes" type = "checkbox" name = "map"		onclick = "setVisibility(this)">Map</label></div>
-				<div style = "white-space: nowrap;"><label><input class = "checkboxes" type = "checkbox" name = "log"		onclick = "setVisibility(this)">Logs</label></div>
-				<div style = "white-space: nowrap;"><label><input class = "checkboxes" type = "checkbox" name = "gordo"	onclick = "setVisibility(this)">Gordos</label></div>
-				<div style = "white-space: nowrap;"><label><input class = "checkboxes" type = "checkbox" name = "key"		onclick = "setVisibility(this)">Keys</label></div>
-				<div style = "white-space: nowrap;"><label><input class = "checkboxes" type = "checkbox" name = "gate"	onclick = "setVisibility(this)">Gates</label></div>
-				<div style = "white-space: nowrap;"><label><input class = "checkboxes" type = "checkbox" name = "vault"	onclick = "setVisibility(this)">Vaults</label></div>
+				<label><input type="checkbox" class="checkboxes" name="map"		onclick="setVisibility(this)">Map Nodes	</label><br>
+				<label><input type="checkbox" class="checkboxes" name="log"		onclick="setVisibility(this)">Logs			</label><br>
+				<label><input type="checkbox" class="checkboxes" name="gordo"	onclick="setVisibility(this)">Gordos		</label><br>
+				<label><input type="checkbox" class="checkboxes" name="key"		onclick="setVisibility(this)">Keys			</label><br>
+				<label><input type="checkbox" class="checkboxes" name="gate"	onclick="setVisibility(this)">Gates			</label><br>
+				<label><input type="checkbox" class="checkboxes" name="vault"	onclick="setVisibility(this)">Vaults		</label><br>
 			</div>
-			<div id = "canvas" style = "width: 100vw; height: 100vh; margin: 0px"></div>
+			<div id="canvas"></div>
 		<div>
-		<script src = "./js/openseadragon.js"></script>
-		<script src = "./js/cycle.js"></script>
-		<script src = "./js/lodash.js"></script>
-		<script src = "./js/index.js"></script>
+		<script src="./js/openseadragon.js"></script>
+		<script src="./js/cycle.js"></script>
+		<script src="./js/lodash.js"></script>
+		<script src="./js/index.js"></script>
 	</body>
 </html>
