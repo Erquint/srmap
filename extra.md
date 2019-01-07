@@ -4,6 +4,7 @@
 * Move all UI to float on top of canvas.  
 * Better error reporting form with `mailto` protocol.  
 * Conditional image element resizing.  
+* webtask.io
 
 ##### Debug snippet:  
 ```JS
