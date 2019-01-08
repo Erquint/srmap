@@ -228,5 +228,5 @@ function createOverlays()
 	})
 })
 	
-_.forEach(document.getElementsByClassName('checkboxes'), window.setVisibility)
+_.forEach(document.getElementsByClassName('checkbox'), window.setVisibility)
 }
