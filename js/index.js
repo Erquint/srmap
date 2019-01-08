@@ -168,7 +168,15 @@ function errHand(msg, url, line, col, error)
 		document.removeChild(document.lastChild)
 	}
 	let string = "Call the cops immediately!\ngness.na@gmail.com\nTell them this:\n" + msg + "\n" + url + ':' + line + ":" + col + "\n" + error.stack
-	window.alert(string)
+    fetch('https://wt-b0e06104736e077cfe963f50b5b65a54-0.sandbox.auth0-extend.com/SendBugMail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain'
+        },
+        body: string
+    }).then(function () {
+        window.alert(string)
+    })
 	console.log(string)
 }
 
