@@ -1,9 +1,9 @@
 <head>
-	<meta charset="UTF-8">
-	<meta name="description"	content="An interactive Slime Rancher map for static web.">
-	<meta name="keywords"			content="Slime Rancher,map,interactive">
-	<meta name="author"				content="Murad 'Gness Erquint' Beybalaev">
-	<meta name="viewport"			content="width=device-width, initial-scale=1.0">
+	<meta charset='UTF-8'>
+	<meta name='description'	content='An interactive Slime Rancher map for static web.'>
+	<meta name='keywords'			content='Slime Rancher,map,interactive'>
+	<meta name='author'				content='Murad 'Gness Erquint' Beybalaev'>
+	<meta name='viewport'			content='width=device-width, initial-scale=1.0'>
 	<link rel='icon'					href='./assets/favicon.ico'>
 	<title>Plort.me — Interactive Slime Rancher map</title>
 	<style>
@@ -47,16 +47,16 @@
 		}
 	</style>
 	<!-- AdSense start -->
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
 	<script>
 		(adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: "ca-pub-3830834436646064",
+			google_ad_client: 'ca-pub-3830834436646064',
 			enable_page_level_ads: true
 		});
 	</script>
 	<!-- AdSense end -->
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131891326-1"></script>
+	<script async src='https://www.googletagmanager.com/gtag/js?id=UA-131891326-1'></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -70,31 +70,31 @@
 		<div id=main>
 			<div id='sidebar'>
 				<div id='checkboxes'>
-					<label><input type="checkbox" name="map"		onclick="setVisibility(this)">Map Nodes	</label><br>
-					<label><input type="checkbox" name="log"		onclick="setVisibility(this)">Logs			</label><br>
-					<label><input type="checkbox" name="gordo"	onclick="setVisibility(this)">Gordos		</label><br>
-					<label><input type="checkbox" name="key"		onclick="setVisibility(this)">Keys			</label><br>
-					<label><input type="checkbox" name="gate"		onclick="setVisibility(this)">Gates			</label><br>
-					<label><input type="checkbox" name="vault"	onclick="setVisibility(this)">Vaults		</label><br>
+					<label><input type='checkbox' class='checkbox' name='map'		onclick='setVisibility(this)'>Map Nodes	</label><br>
+					<label><input type='checkbox' class='checkbox' name='log'		onclick='setVisibility(this)'>Logs			</label><br>
+					<label><input type='checkbox' class='checkbox' name='gordo'	onclick='setVisibility(this)'>Gordos		</label><br>
+					<label><input type='checkbox' class='checkbox' name='key'		onclick='setVisibility(this)'>Keys			</label><br>
+					<label><input type='checkbox' class='checkbox' name='gate'	onclick='setVisibility(this)'>Gates			</label><br>
+					<label><input type='checkbox' class='checkbox' name='vault'	onclick='setVisibility(this)'>Vaults		</label><br>
 				</div>
 				<div id='sidebar_footer'>
 					<div id='donate'>
 						<p>
-							If you like developers not starving to death...
+							If you like developers not starving to death, you could
 						</p>
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>
 							<!-- Identify your business so that you can collect the payments. -->
-							<input type="hidden" name="business" value="gness.na@gmail.com">
+							<input type='hidden' name='business' value='gness.na@gmail.com'>
 							<!-- Specify a Donate button. -->
-							<input type="hidden" name="cmd" value="_donations">
+							<input type='hidden' name='cmd' value='_donations'>
 							<!-- Specify details about the contribution -->
-							<input type="hidden" name="item_name" value="Plort.me (srmap) donation">
-							<input type="hidden" name="item_number" value="">
-							<input type="hidden" name="currency_code" value="USD">
+							<input type='hidden' name='item_name' value='Plort.me (srmap) donation'>
+							<input type='hidden' name='item_number' value=''>
+							<input type='hidden' name='currency_code' value='USD'>
 							<!-- Display the payment button. -->
-							<input type="image" name="submit"
-							src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate">
-							<img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+							<input type='image' name='submit'
+							src='https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif' alt='Donate'>
+							<img alt='' width='1' height='1' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif'>
 						</form>
 					</div>
 					<p>
@@ -107,11 +107,11 @@
 					</p>
 				</div>
 			</div>
-			<div id="canvas"></div>
+			<div id='canvas'></div>
 		<div>
-		<script src="./js/openseadragon.js"></script>
-		<script src="./js/cycle.js"></script>
-		<script src="./js/lodash.js"></script>
-		<script src="./js/index.js"></script>
+		<script src='./js/openseadragon.js'></script>
+		<script src='./js/cycle.js'></script>
+		<script src='./js/lodash.js'></script>
+		<script src='./js/index.js'></script>
 	</body>
 </html>
