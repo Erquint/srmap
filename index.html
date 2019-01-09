@@ -2,28 +2,34 @@
 	<meta charset='UTF-8'>
 	<meta name='description'	content='An interactive Slime Rancher map for static web.'>
 	<meta name='keywords'			content='Slime Rancher,map,interactive'>
-	<meta name='author'				content='Murad 'Gness Erquint' Beybalaev'>
+	<meta name='author'				content='Murad "Gness Erquint" Beybalaev, Anton "Antender" Volokitin'>
 	<meta name='viewport'			content='width=device-width, initial-scale=1.0'>
 	<link rel='icon'					href='./assets/favicon.ico'>
 	<title>Plort.me — Interactive Slime Rancher map</title>
 	<style>
 		*
 		{
-			margin:0;
+			margin:0px;
+			padding:0px;
 		}
 		body
 		{
 			background-color:#AAAEB4;
+		}
+		ul
+		{
+			padding-left:15px;
 		}
 		#main
 		{
 			display:flex;
 			flex-direction:row;
 		}
-		#canvas
+		#sidebar
 		{
-			width:100vw;
-			height:100vh;
+			display:flex;
+			flex-direction: column;
+			margin:4px;
 		}
 		#checkboxes
 		{
@@ -39,22 +45,12 @@
 			width:-moz-min-content;
 			width:-webkit-min-content;
 		}
-		#sidebar
+		#canvas
 		{
-			display:flex;
-			flex-direction: column;
-			margin:4;
+			width:100vw;
+			height:100vh;
 		}
 	</style>
-	<!-- AdSense start -->
-	<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
-	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: 'ca-pub-3830834436646064',
-			enable_page_level_ads: true
-		});
-	</script>
-	<!-- AdSense end -->
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src='https://www.googletagmanager.com/gtag/js?id=UA-131891326-1'></script>
 	<script>
@@ -67,7 +63,7 @@
 </head>
 <html>
 	<body>
-		<div id=main>
+		<div id='main'>
 			<div id='sidebar'>
 				<div id='checkboxes'>
 					<label><input type='checkbox' class='checkbox' name='map'		onclick='setVisibility(this)'>Map Nodes	</label><br>
@@ -78,36 +74,34 @@
 					<label><input type='checkbox' class='checkbox' name='vault'	onclick='setVisibility(this)'>Vaults		</label><br>
 				</div>
 				<div id='sidebar_footer'>
-					<div id='donate'>
+					<div>
+						<div id='donate'>
+							<p>
+								If you enjoy using this map we made, please consider donating.
+							</p>
+							<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_blank'>
+								<!-- Identify your business so that you can collect the payments. -->
+								<input type='hidden' name='business' value='gness.na@gmail.com'>
+								<!-- Specify a Donate button. -->
+								<input type='hidden' name='cmd' value='_donations'>
+								<!-- Specify details about the contribution -->
+								<input type='hidden' name='item_name' value='Plort.me (srmap) donation'>
+								<input type='hidden' name='item_number' value=''>
+								<input type='hidden' name='currency_code' value='USD'>
+								<!-- Display the payment button. -->
+								<input type='image' name='submit'
+								src='https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif' alt='Donate'>
+								<img alt='' width='1' height='1' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif'>
+							</form>
+						</div>
 						<p>
-							If you like developers not starving to death, you could
+							Every bit counts.
 						</p>
-						<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>
-							<!-- Identify your business so that you can collect the payments. -->
-							<input type='hidden' name='business' value='gness.na@gmail.com'>
-							<!-- Specify a Donate button. -->
-							<input type='hidden' name='cmd' value='_donations'>
-							<!-- Specify details about the contribution -->
-							<input type='hidden' name='item_name' value='Plort.me (srmap) donation'>
-							<input type='hidden' name='item_number' value=''>
-							<input type='hidden' name='currency_code' value='USD'>
-							<!-- Display the payment button. -->
-							<input type='image' name='submit'
-							src='https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif' alt='Donate'>
-							<img alt='' width='1' height='1' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif'>
-						</form>
+						<hr>
+						<p>
+							This page was made by two people:<ul><li>Murad "Gness Erquint" Beybalaev (gness.na@gmail.com)</li><li>Anton "Antender" Volokitin (antender@live.ru)</li></ul>It is hosted with <a href='https://github.com/Erquint/srmap' target='_blank'>GitHub</a> Pages and still is in active development.
+						</p>
 					</div>
-					<p>
-						Every bit counts.
-					</p>
-					<hr>
-					<p>
-						Please, report bugs or just bug me at: gness.na@gmail.com
-					</p>
-					<hr>
-					<p>
-						This page is hosted with <a href='https://github.com/Erquint/srmap'>GitHub</a> Pages and still is in active development.
-					</p>
 				</div>
 			</div>
 			<div id='canvas'></div>
@@ -115,7 +109,7 @@
 		<script src='./js/openseadragon.js'></script>
 		<script src='./js/cycle.js'></script>
 		<script src='./js/lodash.js'></script>
-        <script src='./js/unfetch.umd.js'></script>
+		<script src='./js/unfetch.umd.js'></script>
 		<script src='./js/index.js'></script>
 	</body>
 </html>

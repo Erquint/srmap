@@ -167,17 +167,26 @@ function errHand(msg, url, line, col, error)
 	{
 		document.removeChild(document.lastChild)
 	}
-	let string = "Call the cops immediately!\ngness.na@gmail.com\nTell them this:\n" + msg + "\n" + url + ':' + line + ":" + col + "\n" + error.stack
-    fetch('https://wt-b0e06104736e077cfe963f50b5b65a54-0.sandbox.auth0-extend.com/SendBugMail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain'
-        },
-        body: string
-    }).then(function () {
-        window.alert(string)
-    })
-	console.log(string)
+	let bugReport = msg + "\n" + url + ':' + line + ":" + col + "\n" + error.stack
+	if (!!error)
+	{
+		bugReport += error.stack
+	}
+	let userString = "An error has occured and developers couldn't be automatically notified.\nConsider sending them the error details at gness.na@gmail.com\n\nError details:\n" + bugReport
+		fetch('https://wt-b0e06104736e077cfe963f50b5b65a54-0.sandbox.auth0-extend.com/SendBugMail', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'text/plain'
+			},
+			body: bugReport
+		}).then(function()
+		{
+			window.alert("An error has occured.\nDevelopers have been notified.")
+		}).catch(function()
+		{
+			window.alert(userString)
+		})
+	console.log(bugReport)
 }
 
 function createMarker(marker, group)
