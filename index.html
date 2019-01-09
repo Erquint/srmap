@@ -29,6 +29,7 @@
 		{
 			display:flex;
 			flex-direction: column;
+			justify-content:space-between;
 			margin:4px;
 		}
 		#checkboxes
@@ -37,10 +38,6 @@
 		}
 		#sidebar_footer
 		{
-			display:flex;
-			flex-direction:column;
-			flex-grow:1;
-			justify-content:flex-end;
 			width:min-content;
 			width:-moz-min-content;
 			width:-webkit-min-content;
@@ -74,34 +71,32 @@
 					<label><input type='checkbox' class='checkbox' name='vault'	onclick='setVisibility(this)'>Vaults		</label><br>
 				</div>
 				<div id='sidebar_footer'>
-					<div>
-						<div id='donate'>
-							<p>
-								If you enjoy using this map we made, please consider donating.
-							</p>
-							<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_blank'>
-								<!-- Identify your business so that you can collect the payments. -->
-								<input type='hidden' name='business' value='gness.na@gmail.com'>
-								<!-- Specify a Donate button. -->
-								<input type='hidden' name='cmd' value='_donations'>
-								<!-- Specify details about the contribution -->
-								<input type='hidden' name='item_name' value='Plort.me (srmap) donation'>
-								<input type='hidden' name='item_number' value=''>
-								<input type='hidden' name='currency_code' value='USD'>
-								<!-- Display the payment button. -->
-								<input type='image' name='submit'
-								src='https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif' alt='Donate'>
-								<img alt='' width='1' height='1' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif'>
-							</form>
-						</div>
+					<div id='donate'>
 						<p>
-							Every bit counts.
+							If you enjoy using this map we made, please consider donating.
 						</p>
-						<hr>
-						<p>
-							This page was made by two people:<ul><li>Murad "Gness Erquint" Beybalaev (gness.na@gmail.com)</li><li>Anton "Antender" Volokitin (antender@live.ru)</li></ul>It is hosted with <a href='https://github.com/Erquint/srmap' target='_blank'>GitHub</a> Pages and still is in active development.
-						</p>
+						<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_blank'>
+							<!-- Identify your business so that you can collect the payments. -->
+							<input type='hidden' name='business' value='gness.na@gmail.com'>
+							<!-- Specify a Donate button. -->
+							<input type='hidden' name='cmd' value='_donations'>
+							<!-- Specify details about the contribution -->
+							<input type='hidden' name='item_name' value='Plort.me (srmap) donation'>
+							<input type='hidden' name='item_number' value=''>
+							<input type='hidden' name='currency_code' value='USD'>
+							<!-- Display the payment button. -->
+							<input type='image' name='submit'
+							src='https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif' alt='Donate'>
+							<img alt='' width='1' height='1' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif'>
+						</form>
 					</div>
+					<p>
+						Every bit counts.
+					</p>
+					<hr>
+					<p>
+						This page was made by two people:<ul><li>Murad "Gness Erquint" Beybalaev (gness.na@gmail.com)</li><li>Anton "Antender" Volokitin (antender@live.ru)</li></ul>It is hosted with <a href='https://github.com/Erquint/srmap' target='_blank'>GitHub</a> Pages and still is in active development.
+					</p>
 				</div>
 			</div>
 			<div id='canvas'></div>
