@@ -9,7 +9,9 @@
 
 ##### Debug snippet:  
 ```JS
-JSON.stringify(viewer.currentOverlays.map(function(currentOverlay){return currentOverlay.location}), undefined, "\n").replace(/\n+/g, "\n")```
+JSON.stringify(viewer.currentOverlays.map(function(currentOverlay){return currentOverlay.location}), undefined, "\n").replace(/\n+/g, "\n")
+```
+
 http://openseadragon.github.io/docs/OpenSeadragon.Point.html  
 http://openseadragon.github.io/docs/OpenSeadragon.Viewport.html#imageToViewerElementCoordinates  
 http://openseadragon.github.io/docs/OpenSeadragon.html#.Options  
@@ -26,7 +28,8 @@ useCanvas
 sequenceMode
 preserveOverlays
 showReferenceStrip
-zoomPerClick```
+zoomPerClick
+```
 
 ##### Useful colors:  
 * `#0D3F4F`  
@@ -77,14 +80,18 @@ viewer.viewport.pixelFromPointNoRotate(point),
 viewer.viewport.pointFromPixel(point),
 viewer.viewport.pointFromPixelNoRotate(point)];
 y = x.map(function(item){if ((Math.abs(item.x) < 100) && (Math.abs(item.y) < 100)){return item}});
-return y};```
+return y};
+```
 
 ##### Random snippets:  
 ```JS
-let data = JSON.stringify(JSON.decycle(arguments), undefined, "\n").replace(/\n+/g, "\n")```
+let data = JSON.stringify(JSON.decycle(arguments), undefined, "\n").replace(/\n+/g, "\n")
+```
 ```JS
 new Image(50, 50)
 element.width = element.naturalWidth
-element.height = element.naturalHeight```
+element.height = element.naturalHeight
+```
 ```JS
-window.getComputedStyle(document.body).backgroundColor```
+window.getComputedStyle(document.body).backgroundColor
+```
